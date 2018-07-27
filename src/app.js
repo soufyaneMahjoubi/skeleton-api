@@ -1,5 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const swaggerJSDoc = require('swagger-jsdoc');
+const swaggerUi = require('swagger-ui-express');
 const cors = require('cors');
 const helmet = require('helmet');
 const dotenv = require('dotenv');
@@ -35,6 +37,30 @@ const gracefulExit = () => {
     logger.info('API is shutdown !!!');
     process.exit(0);
 };
+
+
+/**
+ * Swagger JS DOC
+ */
+
+const swaggerDefinition = {
+    info: {
+        title: 'API',
+        version: '1.0.0',
+        description: 'A sample API',
+    },
+    host: 'localhost:3002',
+    basePath: '/',
+};
+
+const options = {
+    swaggerDefinition,
+    apis: [`${__dirname}/route/**/*.js`],
+};
+// Initialize swagger-jsdoc -> returns validated swagger spec in json format
+const swaggerSpec = swaggerJSDoc(options);
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 
 /**
  * Events

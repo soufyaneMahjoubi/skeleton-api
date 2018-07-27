@@ -16,9 +16,9 @@ class ExempleController {
 
     /**
      * Simple Post
-     * @param {Object} req 
-     * @param {Object} res 
-     * @param {Function} next 
+     * @param {Object} req
+     * @param {Object} res
+     * @param {Function} next
      */
     postExemple(req, res, next) {
         console.log('toto');

@@ -1,1 +1,1 @@
-toto
+console.log('toto');

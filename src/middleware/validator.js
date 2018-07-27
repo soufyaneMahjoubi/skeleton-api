@@ -10,7 +10,6 @@ const httpStatus = require('http-status');
   */
 module.exports = schema => (req, res, next) => {
     const result = Joi.validate(req, schema, { allowUnknown: true });
-    console.log(result);
     if (result.error) {
         result.error.status = httpStatus.BAD_REQUEST;
         return next(result.error);
